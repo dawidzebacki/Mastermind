@@ -9,7 +9,6 @@
 
 .game-container-mobile {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 24px;
   margin: 0;
@@ -146,13 +145,14 @@
 
 @media (max-width: 700px) {
   .guess {
-    height: 64px;
-    width: 64px;
+    padding: 0;
+    height: 16px;
+    width: 16px;
   }
 
   .answer {
-    height: 64px;
-    width: 64px;
+    height: 16px;
+    width: 16px;
   }
 
   .answer-container {
@@ -161,5 +161,26 @@
 
   .answer-wrapper {
     gap: 16px;
+  }
+
+  .guess {
+    .guess-x {
+      height: 14px;
+      width: 14px;
+      top: -6px;
+      right: -6px;
+    }
+
+    .guess-question {
+      height: 14px;
+      width: 14px;
+      top: -6px;
+      right: -6px;
+    }
+  }
+
+  .row-button,
+  .row-button-disabled {
+    transform: scale(0.66);
   }
 }

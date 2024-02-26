@@ -31,48 +31,7 @@ export const Picker: FC<PickerProps> = ({
               isMobile ? "color-picker-wrapper-mobile" : "color-picker-wrapper"
             }
           >
-            {colors.slice(0, 3).map((color) => {
-              const isUsed = state.includes(color);
-
-              return (
-                <button
-                  key={color}
-                  className={`color-picker color-picker-${color}`}
-                  disabled={isUsed}
-                  onClick={() => {
-                    if (id === -1) {
-                      setState((prev) => {
-                        const arr = [...prev];
-                        const index = arr.findIndex(
-                          (element) => element === ""
-                        );
-                        arr[index] = color;
-
-                        return arr;
-                      });
-                      setId(-1);
-                    } else {
-                      setState((prev) => {
-                        const arr = [...prev];
-                        arr[id] = color;
-                        return arr;
-                      });
-                      setId(-1);
-                    }
-                  }}
-                >
-                  {isUsed && <LineIcon className="color-picker-line" />}
-                </button>
-              );
-            })}
-          </div>
-
-          <div
-            className={
-              isMobile ? "color-picker-wrapper-mobile" : "color-picker-wrapper"
-            }
-          >
-            {colors.slice(3, 6).map((color) => {
+            {colors.map((color) => {
               const isUsed = state.includes(color);
 
               return (
