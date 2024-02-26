@@ -25,9 +25,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: #242424;
@@ -43,6 +42,10 @@ h2 {
   color: #E2E2E2;
 }
 
+span {
+  color: #E2E2E2;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -54,18 +57,4 @@ button {
   transition: border-color 0.25s;
   background-color: #1a1a1a;
   color: #E2E2E2;
-}
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

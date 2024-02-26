@@ -146,13 +146,13 @@
 @media (max-width: 700px) {
   .guess {
     padding: 0;
-    height: 16px;
-    width: 16px;
+    height: clamp(16px, -0.875rem + 8.333333vw, 32px);
+    width: clamp(16px, -0.875rem + 8.333333vw, 32px);
   }
 
   .answer {
-    height: 16px;
-    width: 16px;
+    height: clamp(16px, -0.875rem + 8.333333vw, 32px);
+    width: clamp(16px, -0.875rem + 8.333333vw, 32px);
   }
 
   .answer-container {
