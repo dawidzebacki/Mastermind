@@ -1,0 +1,65 @@
+.color-picker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 104px;
+  height: 160px;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.color-picker {
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  transition: transform ease 0.1s;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  .color-picker-line {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    transform: scale(1.5);
+
+    &:hover {
+      border: none;
+    }
+  }
+
+  &-red {
+    background-color: #FF0000;
+  }
+
+  &-blue {
+    background-color: #0000ff;
+  }
+
+  &-yellow {
+    background-color: #ffff00;
+  }
+
+  &-green {
+    background-color: #00ff00;
+  }
+
+  &-orange {
+    background-color: #ffa500;
+  }
+
+  &-brown {
+    background-color: #964b00;
+  }
+}
