@@ -36,6 +36,11 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #E2E2E2;
+}
+
+h2 {
+  color: #E2E2E2;
 }
 
 button {
@@ -48,6 +53,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  background-color: #1A1a1a;
+  color: #E2E2E2;
 }
 
 
