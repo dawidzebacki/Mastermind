@@ -3,6 +3,7 @@ import "./App.scss";
 import { Row } from "./components/Row";
 import { colors } from "./consts";
 import ReactPlayer from "react-player";
+import useDimensions from "./hooks/useDimensions";
 
 function App() {
   const refWon = useRef<HTMLDivElement | null>(null);
@@ -51,7 +52,9 @@ function App() {
     }
   }, [activeRow]);
 
-  console.log(colorsSequence);
+  const { width } = useDimensions();
+
+  const isMobile = width <= 700;
 
   return (
     <>
@@ -64,6 +67,7 @@ function App() {
           activeRow={activeRow}
           setActiveRow={setActiveRow}
           setIsGG={setIsGG}
+          isMobile={isMobile}
         />
       ))}
 
@@ -73,6 +77,8 @@ function App() {
           <ReactPlayer
             url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             playing
+            width={isMobile ? 320 : 640}
+            height={isMobile ? 180 : 360}
           />
           <button ref={refLose} className="lose" onClick={() => oneMore()}>
             One more?

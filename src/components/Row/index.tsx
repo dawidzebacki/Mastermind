@@ -6,7 +6,7 @@ import { QuestionIcon } from "../../icons/Question";
 
 type RowProps = {
   id: number;
-
+  isMobile: boolean;
   activeRow: number;
   colorsSequence: string[];
   setActiveRow: React.Dispatch<React.SetStateAction<number>>;
@@ -15,6 +15,7 @@ type RowProps = {
 
 export const Row: FC<RowProps> = ({
   id,
+  isMobile,
   colorsSequence,
   activeRow,
   setActiveRow,
@@ -54,40 +55,51 @@ export const Row: FC<RowProps> = ({
 
   return (
     <>
-      <div className="game-container">
+      <div className={isMobile ? "game-container-mobile" : "game-container"}>
         <span>{id}</span>
 
-        <div className="color-picker-container">
-          {showPicker >= 0 && (
-            <Picker
-              id={showPicker}
-              setId={setShowPicker}
-              state={state}
-              setState={setState}
-            />
-          )}
-        </div>
+        {!isMobile && (
+          <div className="color-picker-container">
+            {activeRow === id && (
+              <Picker
+                id={showPicker}
+                setId={setShowPicker}
+                state={state}
+                setState={setState}
+                isMobile={isMobile}
+              />
+            )}
+          </div>
+        )}
 
-        <div className="guess-wrapper">
-          {[0, 1, 2, 3].map((element) => {
-            const isCross = state[element] !== "";
-            const isQuestion = showPicker === element;
+        {isMobile && activeRow === id && (
+          <Picker
+            id={showPicker}
+            setId={setShowPicker}
+            state={state}
+            setState={setState}
+            isMobile={isMobile}
+          />
+        )}
+
+        <div className={isMobile ? "guess-wrapper-mobile" : "guess-wrapper"}>
+          {state.map((element, index) => {
+            const isCross = element !== "";
+            const isQuestion = showPicker === index;
 
             return (
               <button
-                key={`${element}-guess`}
-                className={`guess guess-${
-                  state[element] ? state[element] : "none"
-                }`}
+                key={`${element}-${index}-guess`}
+                className={`guess guess-${element ? element : "none"}`}
                 disabled={isDisabled}
                 onClick={() => {
                   isCross &&
                     setState((prev) => {
-                      const state = prev;
-                      state[element] = "";
+                      const state = [...prev];
+                      state[index] = "";
                       return state;
                     });
-                  setShowPicker(element);
+                  isQuestion ? setShowPicker(-1) : setShowPicker(index);
                 }}
               >
                 {isCross && <CrossIcon className="guess-x" />}

@@ -6,9 +6,21 @@
   height: 160px;
 }
 
+.color-picker-container-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  // width: 104px;
+}
+
 .color-picker-wrapper {
   display: flex;
   gap: 8px;
+}
+
+.color-picker-wrapper-mobile {
+  display: flex;
+  gap: 16px;
 }
 
 .color-picker {
@@ -40,7 +52,7 @@
   }
 
   &-red {
-    background-color: #FF0000;
+    background-color: #ff0000;
   }
 
   &-blue {
@@ -61,5 +73,23 @@
 
   &-brown {
     background-color: #964b00;
+  }
+}
+
+@media (max-width: 700px) {
+  .color-picker {
+    height: 64px;
+    width: 64px;
+
+    .color-picker-line {
+      position: absolute;
+      top: 10px;
+      left: 8.5px;
+      transform: scale(1.75);
+
+      &:hover {
+        border: none;
+      }
+    }
   }
 }

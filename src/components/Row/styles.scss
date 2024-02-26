@@ -7,6 +7,16 @@
   border-bottom: 1px solid gray;
 }
 
+.game-container-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid gray;
+}
+
 .game-container:last-child {
   border-bottom: none;
 }
@@ -14,6 +24,11 @@
 .guess-wrapper {
   display: flex;
   gap: 8px;
+}
+
+.guess-wrapper-mobile {
+  display: flex;
+  gap: 16px;
 }
 
 .guess {
@@ -126,5 +141,25 @@
 
   &:hover {
     border: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .guess {
+    height: 64px;
+    width: 64px;
+  }
+
+  .answer {
+    height: 64px;
+    width: 64px;
+  }
+
+  .answer-container {
+    gap: 16px;
+  }
+
+  .answer-wrapper {
+    gap: 16px;
   }
 }
