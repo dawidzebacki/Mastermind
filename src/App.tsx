@@ -5,8 +5,9 @@ import { colors } from "./consts";
 import ReactPlayer from "react-player";
 
 function App() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const refWon = useRef<HTMLDivElement | null>(null);
   const refHeader = useRef<HTMLHeadingElement | null>(null);
+  const refLose = useRef<HTMLButtonElement | null>(null);
 
   const shuffle = (array: string[]) => {
     const newArr = [...array];
@@ -28,15 +29,29 @@ function App() {
     setColorsSequence(shuffle(colors).slice(0, 4));
     setActiveRow(1);
     setIsGG(false);
-    refHeader.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => {
+      refHeader.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   };
 
   useEffect(() => {
     if (isGG) {
       setActiveRow(0);
-      ref.current?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        refWon.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
   }, [isGG]);
+
+  useEffect(() => {
+    if (activeRow === 7) {
+      setTimeout(() => {
+        refLose.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, [activeRow]);
+
+  console.log(colorsSequence);
 
   return (
     <>
@@ -59,14 +74,18 @@ function App() {
             url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             playing
           />
-          <button onClick={() => oneMore()}>One more?</button>
+          <button ref={refLose} className="lose" onClick={() => oneMore()}>
+            One more?
+          </button>
         </>
       )}
 
-      <div className={isGG ? "won-visible" : "won"} ref={ref}>
-        <h2>You won!</h2>
-        <button onClick={() => oneMore()}>One more?</button>
-      </div>
+      {isGG && (
+        <div className="won" ref={refWon}>
+          <h2>You won!</h2>
+          <button onClick={() => oneMore()}>One more?</button>
+        </div>
+      )}
     </>
   );
 }
